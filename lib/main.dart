@@ -9,11 +9,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme:ThemeData(
+        primarySwatch:Colors.blue,
+        accentColor:Colors.blueAccent,
+        brightness:Brightness.light,
+         ),
       home: Scaffold(
         appBar: AppBar(
           title: Text('CloudList'),
         ),
-        body: ContactManager('Emergency Contacts'),
+        //tab list here?
+        body: ContactManager()
+        
       ),
     );
   }

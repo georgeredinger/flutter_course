@@ -19,24 +19,37 @@ String face() {
 class Contacts extends StatelessWidget {
   final List<String> contacts;
 
-  Contacts(this.contacts);
+  Contacts(this.contacts) {
+    print('[contact widget] Constructor');
+  }
+
   @override
   Widget build(BuildContext context) {
+    print('[contact widget] Build()');
+
     return Column(
       children: contacts
           .map((element) => Card(
                 child: Row(
                   children: <Widget>[
-                    Image.asset(
-                      face(),
-                      height: 100.0,
+                    CircleAvatar(
+                      backgroundImage: AssetImage(
+                        face(),
+                      ),
+                      radius: 100,
                     ),
                     Container(
-                        color: Colors.grey[400],
                         height: 100.0,
+                        margin: new EdgeInsets.symmetric(
+                            vertical: 20.0, horizontal: 50.0),
+                        constraints: BoxConstraints(
+                            maxHeight: 200.0,
+                            maxWidth: 900.0,
+                            minWidth: 70.0,
+                            minHeight: 150.0),
                         child: Text(element,
                             style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize: 30.0,
                               color: Colors.black,
                             )))
                   ],
