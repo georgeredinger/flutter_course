@@ -12,7 +12,7 @@ String face() {
   } else {
     facestring = 'assets/face' + key.toString() + '.jpeg';
   }
-  print(facestring);
+  // print(facestring);
   return facestring;
 }
 
@@ -20,42 +20,57 @@ class Contacts extends StatelessWidget {
   final List<String> contacts;
 
   Contacts(this.contacts) {
-    print('[contact widget] Constructor');
+    // print('[contact widget] Constructor');
+  }
+
+  List bob() {
+    var rand = new Random();
+
+    var c = contacts
+        .map(
+          (element) => Card(
+                  child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  CircleAvatar(
+                    backgroundImage: AssetImage(
+                      face(),
+                    ),
+                    radius: 50,
+                  ),
+                  Container(
+                    height: 20.0,
+                    margin: new EdgeInsets.symmetric(
+                        vertical: 10.0, horizontal: 20.0),
+                    child: Text(element,
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          color: Colors.black,
+                        )),
+                  ),
+                  Checkbox(
+                      value: rand.nextBool(),
+                      onChanged: (bool value) {
+                        setState() {/*comment*/}
+                      })
+                ],
+              )),
+        )
+        .toList();
+
+    print(c.length);
+
+    return c;
   }
 
   @override
   Widget build(BuildContext context) {
-    print('[contact widget] Build()');
-
-    return Column(
-      children: contacts
-          .map((element) => Card(
-                child: Row(
-                  children: <Widget>[
-                    CircleAvatar(
-                      backgroundImage: AssetImage(
-                        face(),
-                      ),
-                      radius: 100,
-                    ),
-                    Container(
-                        height: 100.0,
-                        margin: new EdgeInsets.symmetric(
-                            vertical: 20.0, horizontal: 50.0),
-                        constraints: BoxConstraints(
-                            maxHeight: 200.0,
-                            maxWidth: 900.0,
-                            minWidth: 70.0,
-                            minHeight: 150.0),
-                        child: Text(element,
-                            style: TextStyle(
-                              fontSize: 30.0,
-                              color: Colors.black,
-                            )))
-                  ],
-                ),
-              ))
-          .toList(),
-    );
+    var b = bob();
+    if (b.length == 0) {
+      return Text("Better Spindle some");
+    } else {
+      return ListView(children: b);
+    }
   }
 }

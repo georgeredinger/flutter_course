@@ -21,20 +21,20 @@ String contactor() {
   var id = rid.nextInt(9);
   var key = (id % 9);
   var contactstring = _contactNames[key];
-  print(contactstring);
+  // print(contactstring);
   return contactstring;
 }
 
 class ContactManager extends StatefulWidget {
-  final String startingContact;
+  // final String startingContact;
 
-  ContactManager({this.startingContact = "Crash Tester"}) {
-    print('[contactmanager widget]  constructor');
-  }
+  // ContactManager({this.startingContact = ""}) {
+    // print('[contactmanager widget]  constructor');
+  // }
 
   @override
   State<StatefulWidget> createState() {
-    print('[contactmanager widget]  create state');
+    // print('[contactmanager widget]  create state');
 
     return _ContactManagerState();
   }
@@ -45,21 +45,23 @@ class _ContactManagerState extends State<ContactManager> {
 
   @override
   void initState() {
-        print('[contactmanager state]  init state');
+        // print('[contactmanager state]  init state');
 
     super.initState();
-    _contacts.add(widget.startingContact);
+    // if(widget.startingContact != ""){
+    // _contacts.add(widget.startingContact);
+    // }
   }
 
 @override void didUpdateWidget(ContactManager oldWidget){
-          print('[contactmanager ]  didUpdateWidget()');
+          // print('[contactmanager ]  didUpdateWidget()');
 
   super.didUpdateWidget(oldWidget);
 }
 
   @override
   Widget build(BuildContext context) {
-            print('[contactmanager Widget]  Build()');
+            // print('[contactmanager Widget]  Build()');
 
     return Column(
       children: [
@@ -79,7 +81,7 @@ class _ContactManagerState extends State<ContactManager> {
                 )),
           ),
         ),
-        Contacts(_contacts)
+        Expanded(child:Contacts(_contacts))
       ],
     );
   }
