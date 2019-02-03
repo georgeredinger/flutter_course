@@ -35,6 +35,7 @@ class Contacts extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
+                  
                   CircleAvatar(
                     backgroundImage: AssetImage(
                       face(),

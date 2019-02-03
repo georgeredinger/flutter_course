@@ -54,6 +54,7 @@ flutter:
     - assets/face13.jpeg
     - assets/face14.jpeg
     - assets/bs.jpeg
+    - assets/cloudspindle-512-transparent.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
