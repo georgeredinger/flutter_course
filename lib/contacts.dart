@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 
 import 'dart:math';
+import './pages/settings.dart';
 
 String face() {
   var rid = new Random();
@@ -23,8 +24,9 @@ class Contacts extends StatelessWidget {
     // print('[contact widget] Constructor');
   }
 
-  List bob() {
+  List bob(BuildContext context) {
     var rand = new Random();
+    bool isInstructionView = rand.nextBool();
 
     var c = contacts
         .map(
@@ -49,11 +51,53 @@ class Contacts extends StatelessWidget {
                           color: Colors.black,
                         )),
                   ),
-                  Checkbox(
+                  Switch(
                       value: rand.nextBool(),
                       onChanged: (bool value) {
-                        setState() {/*comment*/}
-                      })
+                        isInstructionView = !value;
+                        print(isInstructionView);
+                      }),
+                  IconButton(
+                    color: (rand.nextBool()) ? Colors.red : Colors.grey,
+                    icon: (rand.nextBool())
+                        ? Icon(Icons.favorite)
+                        : Icon(Icons.favorite_border),
+                    tooltip: 'Make Emergency contact',
+                    onPressed: () {
+                      print("Favorite");
+                    },
+                  ),
+                  IconButton(
+                    color: (rand.nextBool()) ? Colors.red : Colors.grey,
+                    icon: Icon(Icons.contact_mail),
+                    tooltip: 'Make Happy contact',
+                    onPressed: () {
+                      print("Phone");
+                    },
+                  ),
+                  IconButton(
+                    color: (rand.nextBool()) ? Colors.red : Colors.grey,
+                    icon: Icon(Icons.directions_bike),
+                    tooltip: 'Make bike contact',
+                    onPressed: () {
+                      print("bike");
+                    },
+                  ),
+                  ButtonBar(
+                      alignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        FlatButton(
+                          child: Text(
+                            'Details',
+                          ),
+                          onPressed: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) => SettingsPage(),
+                                ),
+                              ),
+                        )
+                      ])
                 ],
               )),
         )
@@ -66,9 +110,13 @@ class Contacts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var b = bob();
+    var b = bob(context);
     if (b.length == 0) {
-      return Text("Better Spindle some");
+      return Center(
+          child: Text(
+        "Better Spindle some",
+        style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
+      ));
     } else {
       return ListView(children: b);
     }

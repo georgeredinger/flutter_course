@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter/rendering.dart';
 
-import './contact_manager.dart';
+import './pages/home.dart';
+
 
 void main() {
-// debugPaintPointersEnabled = 
-    // debugPaintBaselinesEnabled = 
-    // debugPaintLayerBordersEnabled = 
-    // debugRepaintRainbowEnabled = true;
   runApp(MyApp());
 }
 
@@ -21,12 +18,7 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.blueAccent,
         brightness: Brightness.light,
       ),
-      home: Scaffold(
-          appBar: AppBar(
-            title: Text('CloudList'),
-          ),
-          //tab list here?
-          body: ContactManager()),
+      home: HomePage(),
     );
   }
 }
