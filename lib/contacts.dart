@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
 import 'dart:math';
-import './pages/settings.dart';
+// import './pages/settings.dart';
 
 String face() {
   var rid = new Random();
@@ -24,88 +24,78 @@ class Contacts extends StatelessWidget {
     // print('[contact widget] Constructor');
   }
 
-  List bob(BuildContext context) {
-    var rand = new Random();
-    bool isInstructionView = rand.nextBool();
+  Widget contactImage() {
+    return CircleAvatar(
+      backgroundImage: AssetImage(
+        face(),
+      ),
+      radius: 50,
+    );
+  }
 
+  Widget contactName(String element) {
+    return Container(
+      height: 20.0,
+      margin: new EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+      child: Text(element,
+          style: TextStyle(
+            fontSize: 22.0,
+            color: Colors.black,
+          )),
+    );
+  }
+
+  Widget contactEmergency() {
+    var rand = new Random();
+
+    return IconButton(
+      color: (rand.nextBool()) ? Colors.red : Colors.grey,
+      icon: (rand.nextBool())
+          ? Icon(Icons.add_circle)
+          : Icon(Icons.add_circle_outline),
+      tooltip: 'Make Emergency contact',
+      onPressed: () {
+        print("Emergency");
+      },
+    );
+  }
+
+  Widget contactLetFollow() {
+    var rand = new Random();
+
+    return IconButton(
+      color: (rand.nextBool()) ? Colors.red : Colors.grey,
+      icon: Icon(Icons.contact_mail),
+      tooltip: 'Make Socal contact',
+      onPressed: () {
+        print("happy");
+      },
+    );
+  }
+
+  List<Widget> contactStuff(String element) {
+    return [
+      contactImage(),
+      Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            contactName(element),
+            Row(children: [contactLetFollow(), contactEmergency()])
+          ])
+    ];
+  }
+
+  List bob(BuildContext context) {
     var c = contacts
         .map(
           (element) => Card(
                   child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  
-                  CircleAvatar(
-                    backgroundImage: AssetImage(
-                      face(),
-                    ),
-                    radius: 50,
-                  ),
-                  Container(
-                    height: 20.0,
-                    margin: new EdgeInsets.symmetric(
-                        vertical: 10.0, horizontal: 20.0),
-                    child: Text(element,
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          color: Colors.black,
-                        )),
-                  ),
-                  Switch(
-                      value: rand.nextBool(),
-                      onChanged: (bool value) {
-                        isInstructionView = !value;
-                        print(isInstructionView);
-                      }),
-                  IconButton(
-                    color: (rand.nextBool()) ? Colors.red : Colors.grey,
-                    icon: (rand.nextBool())
-                        ? Icon(Icons.favorite)
-                        : Icon(Icons.favorite_border),
-                    tooltip: 'Make Emergency contact',
-                    onPressed: () {
-                      print("Favorite");
-                    },
-                  ),
-                  IconButton(
-                    color: (rand.nextBool()) ? Colors.red : Colors.grey,
-                    icon: Icon(Icons.contact_mail),
-                    tooltip: 'Make Happy contact',
-                    onPressed: () {
-                      print("Phone");
-                    },
-                  ),
-                  IconButton(
-                    color: (rand.nextBool()) ? Colors.red : Colors.grey,
-                    icon: Icon(Icons.directions_bike),
-                    tooltip: 'Make bike contact',
-                    onPressed: () {
-                      print("bike");
-                    },
-                  ),
-                  ButtonBar(
-                      alignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        FlatButton(
-                          child: Text(
-                            'Details',
-                          ),
-                          onPressed: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (BuildContext context) => SettingsPage(),
-                                ),
-                              ),
-                        )
-                      ])
-                ],
+                children: contactStuff(element),
               )),
         )
         .toList();
-
-    print(c.length);
-
     return c;
   }
 

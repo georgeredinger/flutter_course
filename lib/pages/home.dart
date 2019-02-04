@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 
 import '../contact_manager.dart';
+import './settings.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    print(width) ;
     return Scaffold(
       appBar: AppBar(
         title: Text('CloudList'),
       ),
       body: ContactManager(),
       drawer: SizedBox(
-          width: 500,
+          width: width * 0.75,
           child: Drawer(
-            // Add a ListView to the drawer. This ensures the user can scroll
-            // through the options in the Drawer if there isn't enough vertical
-            // space to fit everything.
             child: ListView(
-              // Important: Remove any padding from the ListView.
               padding: EdgeInsets.zero,
               children: <Widget>[
                 DrawerHeader(
@@ -48,9 +47,16 @@ class HomePage extends StatelessWidget {
       persistentFooterButtons: <Widget>[
         Icon(Icons.apps),
         Icon(Icons.more_horiz),
-        Icon(Icons.settings),
-        Icon(Icons.settings_bluetooth),
+        Icon(Icons.settings_bluetooth, color: Colors.blue),
         Icon(Icons.settings_applications),
+        IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => SettingsPage()));
+            }),
       ],
     );
   }
