@@ -14,27 +14,25 @@ class HomePage extends StatelessWidget {
       body: ContactManager(),
       endDrawer: Drawer(
         child: Column(children: [
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
-          Text("WTF"),
+          Transform.rotate(
+            angle:3.14,
+            child: DrawerHeader(
+              child: Text(
+                  "consectetur adipiscing elit, sed do eiusmod tempor incididunt"),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    fit: BoxFit.fitWidth,
+                    alignment: FractionalOffset.bottomCenter,
+                    image:
+                        AssetImage('assets/cloudspindle-512-transparent.png')),
+                color: Colors.blue,
+              ),
+            ),
+          ),
+          Text(
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+          Text(
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
         ]),
       ),
       drawer: SizedBox(
