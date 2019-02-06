@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../contact_manager.dart';
 import './settings.dart';
+import './settingsprofile.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -13,10 +14,10 @@ class HomePage extends StatelessWidget {
           appBar: AppBar(
               title: Text('CloudList'),
               bottom: TabBar(tabs: <Widget>[
-                Tab( icon: Icon(Icons.settings),text: "dogum"),
-                Tab(icon:Icon(Icons.notifications),text: "smegum"),
-                Tab(icon:Icon(Icons.settings_bluetooth),text: "skookum"),
-                Tab(icon: Icon(Icons.attach_money) ,text: "Choocher"),
+                Tab(icon: Icon(Icons.settings), text: "dogum"),
+                Tab(icon: Icon(Icons.notifications), text: "smegum"),
+                Tab(icon: Icon(Icons.settings_bluetooth), text: "skookum"),
+                Tab(icon: Icon(Icons.attach_money), text: "Choocher"),
               ])),
           body: ContactManager(),
           endDrawer: Drawer(
@@ -73,14 +74,33 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               )),
-              bottomNavigationBar: TabBar(tabs: <Widget>[
-                Tab(icon:Icon(Icons.apps,color: Colors.black)),
-                Tab(icon: Icon(Icons.settings_bluetooth, color: Colors.blue)),
-                Tab(icon: Icon(Icons.directions_bike,color: Colors.green)),
-                Tab(icon: Icon(Icons.settings,color: Colors.black))
-                
-
-              ],),
+          bottomNavigationBar: TabBar(
+            tabs: <Widget>[
+              Tab(icon: Icon(Icons.apps, color: Colors.black)),
+              Tab(
+                icon: IconButton(
+                    icon: Icon(Icons.settings, color: Colors.black),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  SettingsPage()));
+                    }),
+              ),
+              Tab(icon: Icon(Icons.directions_bike, color: Colors.green)),
+              Tab(
+                  icon: IconButton(
+                      icon: Icon(Icons.person, color: Colors.black),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    SettingsProfile()));
+                      })),
+            ],
+          ),
           //bottom nav bar
           // persistentFooterButtons: <Widget>[
           //   Icon(Icons.apps),
