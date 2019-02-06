@@ -101,21 +101,7 @@ class HomePage extends StatelessWidget {
                       })),
             ],
           ),
-          //bottom nav bar
-          // persistentFooterButtons: <Widget>[
-          //   Icon(Icons.apps),
-          //   Icon(Icons.more_horiz),
-          //   Icon(Icons.settings_bluetooth, color: Colors.blue),
-          //   Icon(Icons.settings_applications),
-          //   IconButton(
-          //       icon: Icon(Icons.settings),
-          //       onPressed: () {
-          //         Navigator.push(
-          //             context,
-          //             MaterialPageRoute(
-          //                 builder: (BuildContext context) => SettingsPage()));
-          //       }),
-          // ],
+          
         ));
   }
 }
