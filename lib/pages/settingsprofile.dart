@@ -48,13 +48,6 @@ class _ProfileState extends State<SettingsProfile> {
           title: Text('Profile Settings'),
         ),
         body: ListView(children: <Widget>[
-          // Container(
-          //   margin: EdgeInsets.only(top: 10.0),
-          //   child: CircleAvatar(
-          //     backgroundImage: AssetImage(face()),
-          //     radius: 50,
-          //   ),
-          // ),
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Container(

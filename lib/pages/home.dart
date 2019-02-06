@@ -3,11 +3,22 @@ import 'package:flutter/material.dart';
 import '../contact_manager.dart';
 import './settings.dart';
 import './settingsprofile.dart';
+import './login.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    var tab = Tab(
+      icon: IconButton(
+          icon: Icon(Icons.directions_bike, color: Colors.purple),
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => Login()));
+          }),
+    );
     return DefaultTabController(
         length: 4,
         child: Scaffold(
@@ -88,7 +99,7 @@ class HomePage extends StatelessWidget {
                                   SettingsPage()));
                     }),
               ),
-              Tab(icon: Icon(Icons.directions_bike, color: Colors.green)),
+              tab,
               Tab(
                   icon: IconButton(
                       icon: Icon(Icons.person, color: Colors.black),
@@ -101,7 +112,6 @@ class HomePage extends StatelessWidget {
                       })),
             ],
           ),
-          
         ));
   }
 }
