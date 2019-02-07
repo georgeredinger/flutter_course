@@ -59,7 +59,10 @@ class _LoginState extends State<Login> {
                     context: context,
                     builder: (BuildContext context) {
                       return Center(
-                        child: Text("R U N, get out now,She's gonna Blow, Get to the Chopper"),
+                        child: Text(
+                            "R U N, get out now,She's Gonna Blow, Get to the Chopper",
+                            style:
+                                TextStyle(fontSize: 32.0, color: Colors.black)),
                       );
                     });
               }),
@@ -73,7 +76,7 @@ class _LoginState extends State<Login> {
                     builder: (BuildContext context) {
                       return AlertDialog(
                           title: Text("Be scared"),
-                          content: Text("If they bite you become one"),
+                          content: Text("If they bite, you become one"),
                           actions: <Widget>[
                             FlatButton(
                                 child: Text("roasted",

@@ -5,9 +5,24 @@ import './pages/home.dart';
 import './pages/settings.dart';
 import './pages/settingsprofile.dart';
 
+
 void main() {
+  Map<String,String> userProfile = new Map<String,String>(); 
+   userProfile['UserName'] = 'UserName'; 
+   userProfile['FirstName'] = 'FirstName'; 
+   userProfile['LastName'] = 'LastName'; 
+   userProfile['Address'] = 'Address'; 
+   userProfile['Gender'] = 'Gender'; 
+   
+   print(userProfile); 
+
   runApp(MyApp());
 }
+
+
+
+
+
 
 class MyApp extends StatelessWidget {
   @override
