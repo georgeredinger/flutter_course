@@ -45,7 +45,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Log me in Capitan'),
+        title: Text('Log me in El Capitan'),
       ),
       body: ListView(children: <Widget>[
         Padding(
@@ -54,16 +54,56 @@ class _LoginState extends State<Login> {
               color: Colors.orange,
               borderRadius: new BorderRadius.circular(30.0),
               child: Text("CupertinoButton"),
-              onPressed: () {}),
+              onPressed: () {
+                showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return Center(
+                        child: Text("R U N, get out now,She's gonna Blow, Get to the Chopper"),
+                      );
+                    });
+              }),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: FlatButton(
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                          title: Text("Be scared"),
+                          content: Text("If they bite you become one"),
+                          actions: <Widget>[
+                            FlatButton(
+                                child: Text("roasted",
+                                    style: TextStyle(color: Colors.white)),
+                                color: Colors.red,
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                }),
+                            FlatButton(
+                                child: Text("fried",
+                                    style: TextStyle(color: Colors.black)),
+                                color: Colors.green,
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                }),
+                            FlatButton(
+                                child: Text("boiled",
+                                    style: TextStyle(color: Colors.yellow)),
+                                color: Colors.blue,
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                })
+                          ]);
+                    });
+              },
               shape: RoundedRectangleBorder(
                   borderRadius: new BorderRadius.circular(30.0)),
               color: Colors.teal,
-              child: Text("FLAT BUTTON",style:  TextStyle(fontSize: 18.0, color: Colors.white))),
+              child: Text("FLAT BUTTON",
+                  style: TextStyle(fontSize: 18.0, color: Colors.white))),
         )
       ]),
     );

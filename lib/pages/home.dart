@@ -10,15 +10,12 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     var tab = Tab(
-      icon: IconButton(
-          icon: Icon(Icons.directions_bike, color: Colors.purple),
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => Login()));
-          }),
-    );
+        icon: IconButton(
+            // icon: Icon(Icons.lock, color: Colors.purple),
+            icon: Icon(Icons.lock_open, color: Colors.purple),
+            onPressed: () {
+              Navigator.pushNamed(context, '/login');
+            }));
     return DefaultTabController(
         length: 4,
         child: Scaffold(
@@ -87,16 +84,14 @@ class HomePage extends StatelessWidget {
               )),
           bottomNavigationBar: TabBar(
             tabs: <Widget>[
-              Tab(icon: Icon(Icons.apps, color: Colors.black)),
+              Tab(icon: Icon(Icons.home, color: Colors.black)),
               Tab(
                 icon: IconButton(
                     icon: Icon(Icons.settings, color: Colors.black),
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  SettingsPage()));
+
+                      Navigator.pushNamed(context, '/settings');
+
                     }),
               ),
               tab,
