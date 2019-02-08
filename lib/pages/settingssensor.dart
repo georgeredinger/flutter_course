@@ -32,6 +32,8 @@ class _SensorState extends State<Sensor> {
       appBar: AppBar(
         title: Text('Sensor Settings'),
       ),
+
+      //try SwitchListTile for a list of switched with titles
       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Row(
             crossAxisAlignment: CrossAxisAlignment.center,

@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../contact_manager.dart';
 import './settings.dart';
 import './settingsprofile.dart';
-import './login.dart';
+import '../main.dart';
+
+// import './login.dart';
+
+void _onChangedFBreferenceName(String value) => (() {
+      fb.name = value;
+      print(fb.name);
+    });
 
 class HomePage extends StatelessWidget {
   @override
@@ -84,14 +92,71 @@ class HomePage extends StatelessWidget {
               )),
           bottomNavigationBar: TabBar(
             tabs: <Widget>[
-              Tab(icon: Icon(Icons.home, color: Colors.black)),
+              Tab(
+                  //set firebase reference name
+                  icon: IconButton(
+                      icon: Icon(Icons.fiber_new,
+                          color: Colors.orange, size: 35.0),
+                      onPressed: () {
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return Center(
+                                child: Container(
+                                  child: Column(
+                                    children: <Widget>[
+                                      Text("Firebase Reference Name",
+                                          style: TextStyle(
+                                              fontSize: 32.0,
+                                              color: Colors.black)),
+                                      Container(
+                                        margin: EdgeInsets.all(20.0),
+                                        child: TextField(
+                                          decoration: InputDecoration(
+                                              labelText: fb.name,
+                                              icon: Icon(Icons.info)),
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 36.0),
+                                          onChanged: (text) {
+                                            fb.name = text;
+                                            // print(fb.name);
+                                          },
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(18.0),
+                                        child: FlatButton(
+                                            child: Text(
+                                              "roasted",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: 36.0),
+                                            ),
+                                            color: Colors.green,
+                                            onPressed: () async {
+                                              print(
+                                                  "Firebase Reference Name = " +
+                                                      fb.name);
+                                              SharedPreferences prefs =
+                                                  await SharedPreferences
+                                                      .getInstance();
+                                              prefs.setString(
+                                                  'fbRefName', fb.name);
+                                              //do the dave thing
+                                            }),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            });
+                      })),
               Tab(
                 icon: IconButton(
                     icon: Icon(Icons.settings, color: Colors.black),
                     onPressed: () {
-
                       Navigator.pushNamed(context, '/settings');
-
                     }),
               ),
               tab,
