@@ -5,6 +5,7 @@ import './pages/home.dart';
 import './pages/login.dart';
 import './pages/settings.dart';
 import './pages/settingsprofile.dart';
+import './pages/settingssensor.dart';
 
 bool get isInDebugMode {
   bool inDebugMode = false;
@@ -61,6 +62,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           accentColor: Colors.blueAccent,
           brightness: Brightness.light,
+          fontFamily: 'PT_Sans',
         ),
         home: HomePage(),
         routes: {
@@ -68,6 +70,7 @@ class MyApp extends StatelessWidget {
           '/login': (BuildContext context) => Login(),
           '/settings': (BuildContext context) => SettingsPage(),
           '/profile': (BuildContext context) => SettingsProfile(),
+          '/sensor': (BuildContext context) => Sensor(),
         });
   }
 }

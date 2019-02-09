@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:math';
 
 import '../contact_manager.dart';
 import './settings.dart';
@@ -7,6 +8,37 @@ import './settingsprofile.dart';
 import '../main.dart';
 
 // import './login.dart';
+
+TextStyle funky() {
+  var rid = new Random();
+  int id = rid.nextInt(5) + 1;
+  print("id=" + id.toString());
+  assert(id >= 1 && id <= 5);
+  switch (id) {
+    case 1:
+      return TextStyle(
+          color: Colors.black, fontSize: 36.0, fontFamily: 'Pacifico',      decoration: TextDecoration.lineThrough,
+);
+      break;
+    case 2:
+      return TextStyle(
+          color: Colors.black, fontSize: 36.0, fontFamily: 'IndieFlower');
+      break;
+    case 3:
+      return TextStyle(
+          color: Colors.black, fontSize: 36.0, fontFamily: 'MajorMonoDisplay');
+      break;
+    case 4:
+      return TextStyle(
+          color: Colors.black, fontSize: 36.0, fontFamily: 'PT_Sans');
+      break;
+    case 5:
+      return TextStyle(
+          color: Colors.black, fontSize: 36.0, fontFamily: 'ZCOO');
+      break;
+  }
+  return TextStyle(color: Colors.black, fontSize: 36.0, fontFamily: 'Pacifico');
+}
 
 void _onChangedFBreferenceName(String value) => (() {
       fb.name = value;
@@ -105,19 +137,17 @@ class HomePage extends StatelessWidget {
                                 child: Container(
                                   child: Column(
                                     children: <Widget>[
-                                      Text("Firebase Reference Name",
-                                          style: TextStyle(
-                                              fontSize: 32.0,
-                                              color: Colors.black)),
+                                      Text(
+                                        "Firebase Reference Name",
+                                        style: funky(),
+                                      ),
                                       Container(
                                         margin: EdgeInsets.all(20.0),
                                         child: TextField(
                                           decoration: InputDecoration(
                                               labelText: fb.name,
                                               icon: Icon(Icons.info)),
-                                          style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 36.0),
+                                          style: funky(),
                                           onChanged: (text) {
                                             fb.name = text;
                                             // print(fb.name);
@@ -128,12 +158,10 @@ class HomePage extends StatelessWidget {
                                         padding: const EdgeInsets.all(18.0),
                                         child: FlatButton(
                                             child: Text(
-                                              "roasted",
-                                              style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 36.0),
+                                              "Roasted",
+                                              style: funky(),
                                             ),
-                                            color: Colors.green,
+                                            color: Colors.deepOrangeAccent,
                                             onPressed: () async {
                                               print(
                                                   "Firebase Reference Name = " +

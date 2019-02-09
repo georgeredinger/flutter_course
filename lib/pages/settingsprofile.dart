@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:math';
 
+import './home.dart';
+
 String face() {
   var rid = new Random();
   var id = rid.nextInt(14);
