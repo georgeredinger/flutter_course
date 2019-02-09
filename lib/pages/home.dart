@@ -12,7 +12,7 @@ import '../main.dart';
 TextStyle funky() {
   var rid = new Random();
   int id = rid.nextInt(5) + 1;
-  print("id=" + id.toString());
+  // print("id=" + id.toString());
   assert(id >= 1 && id <= 5);
   switch (id) {
     case 1:
@@ -150,7 +150,6 @@ class HomePage extends StatelessWidget {
                                           style: funky(),
                                           onChanged: (text) {
                                             fb.name = text;
-                                            // print(fb.name);
                                           },
                                         ),
                                       ),

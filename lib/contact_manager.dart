@@ -68,8 +68,8 @@ class _ContactManagerState extends State<ContactManager> {
     double rad = Random().nextDouble() * 30.0;
     Color clr = Color((Random().nextDouble() * 0xFFFFFF).toInt() << 0);
 
-    print(opa.toString()+" "+rad.toString());
-    print(clr);
+    // print(opa.toString()+" "+rad.toString());
+    // print(clr);
 
     return Column(
       children: [

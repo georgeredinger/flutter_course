@@ -26,22 +26,55 @@ class SettingsProfile extends StatefulWidget {
 }
 
 class _ProfileState extends State<SettingsProfile> {
-  String _userName = "UserName";
-  String _firstName = "FirstName";
-  String _lastName = "LastName";
+  Map<String, String> _profile = {
+    'userName': "",
+    'firstName': "",
+    'lastName': "",
+    'location': "",
+    'gender': "",
+  };
 
-  void _onChangedUserName(String value) => setState(() {
-        _userName = value;
-        print(_userName);
-      });
+  void _submitForm() {
+    if (!_formKey.currentState.validate()) {
+      return; // don't save if validation fails
+    }
 
-  void _onChangedFirstName(String value) => setState(() {
-        _firstName = value;
-      });
+    _formKey.currentState.save();
+    final Map<String, String> profile = _profile;
+    print("profile is " + profile.toString());
+  }
 
-  void _onChangedLastName(String value) => setState(() {
-        _lastName = value;
-      });
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  Widget _fField(String label, String result) {
+    return TextFormField(
+        decoration: InputDecoration(labelText: label, icon: Icon(Icons.info)),
+        validator: (String value) {
+          switch (result) {
+            case 'userName':
+              break;
+            case 'firstName':
+              break;
+            case 'lastName':
+              if (value == 'Devnani') {
+                return "Who do you think you are?";
+              }
+              break;
+            case 'location':
+              break;
+            case 'gender':
+              if (value != 'Flex') {
+                return 'no posers allowed';
+              }
+              break;
+          }
+        },
+        onSaved: (String value) {
+          setState(() {
+            _profile[result] = value;
+          });
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,62 +84,38 @@ class _ProfileState extends State<SettingsProfile> {
         ),
         body: Container(
           margin: EdgeInsets.all(15.0),
-          child: ListView(children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Container(
-                  width: 100.0,
-                  height: 100.0,
-                  alignment: Alignment(-1, 1),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage(face()),
-                    // child:Image.asset(face()),
-                    radius: 60,
-                  )),
-            ),
-            TextField(
-              decoration: InputDecoration(
-                  labelText: "Sooby Do", icon: Icon(Icons.info)),
-              onChanged: _onChangedUserName,
-            ),
-            TextFormField(
-                decoration: InputDecoration(
-              labelText: 'User name',
-              icon: Icon(Icons.info),
-              hintText: "User name",
-            )),
-            TextFormField(
-                decoration: InputDecoration(
-              labelText: 'First name',
-              icon: Icon(Icons.info),
-              hintText: "Last name",
-            )),
-            TextFormField(
-                decoration: InputDecoration(
-              labelText: 'Last name',
-              icon: Icon(Icons.info),
-              hintText: "Last name",
-            )),
-            Divider(),
-            TextFormField(
-                decoration: InputDecoration(
-              labelText: 'More Crap',
-              icon: Icon(Icons.info),
-              hintText: "Send Stuff",
-            )),
-            TextFormField(
-                decoration: InputDecoration(
-              labelText: 'Don\'t Tell',
-              icon: Icon(Icons.info),
-              hintText: "Undefined",
-            )),
-          ]),
+          child: Form(
+            key: _formKey,
+            child: ListView(children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Container(
+                    width: 100.0,
+                    height: 100.0,
+                    alignment: Alignment(-1, 1),
+                    child: CircleAvatar(
+                      backgroundImage: AssetImage(face()),
+                      radius: 60,
+                    )),
+              ),
+              _fField("user name", "userName"),
+              _fField("first name", "firstName"),
+              _fField("last name", "lastName"),
+              Container(
+                  padding: EdgeInsets.all(8.0),
+                  child: Divider(color: Colors.black, height: 13.0)),
+              _fField("location", "location"),
+              _fField("gender", "gender"),
+            ]),
+          ),
         ),
         floatingActionButton: FloatingActionButton(
             elevation: 0.0,
             child: Icon(Icons.add, size: 36.0),
             materialTapTargetSize: MaterialTapTargetSize.padded,
             backgroundColor: Colors.green,
-            onPressed: () {}));
+            onPressed: () {
+              _submitForm();
+            }));
   }
 }
