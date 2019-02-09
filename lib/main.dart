@@ -13,10 +13,8 @@ bool get isInDebugMode {
   return inDebugMode;
 }
 
-
-class FirebaseReference{
+class FirebaseReference {
   String name;
-
 }
 
 var fb = FirebaseReference();
@@ -24,10 +22,10 @@ var fb = FirebaseReference();
 Future getFBRefName() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   // print(prefs.setString('fbRefName', "ForwardTheFuture"));
-  
+
   fb.name = prefs.getString('fbRefName') ?? "NotAvailable";
-  
-  print("Firebase Ref Name = " + fb.name );
+
+  print("Firebase Ref Name = " + fb.name);
 
   return "ref";
 }
@@ -35,9 +33,8 @@ Future getFBRefName() async {
 void main() {
   // String firebaseRefName = "LightMyFirebase";
 
-
   if (isInDebugMode) {
-     fb.name  = "jampackde";
+    fb.name = "jampackde";
   }
 
   getFBRefName();
@@ -62,15 +59,21 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           accentColor: Colors.blueAccent,
           brightness: Brightness.light,
+          buttonColor:Colors.deepOrange,
           fontFamily: 'PT_Sans',
         ),
         home: HomePage(),
         routes: {
           // '/': (BuildContext context ) => HomePage(),
+          '/emergencycontacts': (BuildContext context) => Sensor(),
+          '/cyclists': (BuildContext context) => Sensor(),
+          '/sensor': (BuildContext context) => Sensor(),
+          '/privacy': (BuildContext context) => Sensor(),
+          '/profile': (BuildContext context) => SettingsProfile(),
+          '/notifications': (BuildContext context) => Sensor(),
+
           '/login': (BuildContext context) => Login(),
           '/settings': (BuildContext context) => SettingsPage(),
-          '/profile': (BuildContext context) => SettingsProfile(),
-          '/sensor': (BuildContext context) => Sensor(),
         });
   }
 }
