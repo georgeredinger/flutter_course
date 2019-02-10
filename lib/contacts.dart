@@ -109,7 +109,9 @@ class Contacts extends StatelessWidget {
         style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
       ));
     } else {
-      return ListView(children: b);
+      return
+         ListView(children: b);
+      
     }
   }
 }

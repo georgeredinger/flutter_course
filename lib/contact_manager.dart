@@ -27,16 +27,8 @@ String contactor() {
 }
 
 class ContactManager extends StatefulWidget {
-  // final String startingContact;
-
-  // ContactManager({this.startingContact = ""}) {
-  // print('[contactmanager widget]  constructor');
-  // }
-
   @override
   State<StatefulWidget> createState() {
-    // print('[contactmanager widget]  create state');
-
     return _ContactManagerState();
   }
 }
@@ -46,30 +38,23 @@ class _ContactManagerState extends State<ContactManager> {
 
   @override
   void initState() {
-    // print('[contactmanager state]  init state');
-
     super.initState();
-    // if(widget.startingContact != ""){
-    // _contacts.add(widget.startingContact);
-    // }
   }
 
   @override
   void didUpdateWidget(ContactManager oldWidget) {
-    // print('[contactmanager ]  didUpdateWidget()');
-
     super.didUpdateWidget(oldWidget);
+  }
+
+  _deleteContact(String name) {
+    _contacts.removeAt(0);
   }
 
   @override
   Widget build(BuildContext context) {
-    // print('[contactmanager Widget]  Build()');
     double opa = Random().nextDouble() % 1.0;
     double rad = Random().nextDouble() * 30.0;
     Color clr = Color((Random().nextDouble() * 0xFFFFFF).toInt() << 0);
-
-    // print(opa.toString()+" "+rad.toString());
-    // print(clr);
 
     return Column(
       children: [
@@ -78,7 +63,7 @@ class _ContactManagerState extends State<ContactManager> {
           child: Container(
             decoration: BoxDecoration(
                 border: Border.all(color: clr, width: 3.0),
-                borderRadius: BorderRadius.circular( rad),
+                borderRadius: BorderRadius.circular(rad),
                 boxShadow: [
                   BoxShadow(
                     color: clr,
@@ -87,8 +72,7 @@ class _ContactManagerState extends State<ContactManager> {
                   ),
                 ]),
             child: RaisedButton(
-               color: clr
-               .withOpacity(opa),
+              color: clr.withOpacity(opa),
               onPressed: () {
                 setState(() {
                   _contacts.add(contactor());
@@ -97,11 +81,6 @@ class _ContactManagerState extends State<ContactManager> {
               child: Text(
                 'Spindle it',
                 style: funky(),
-                // TextStyle(
-                //   fontSize: 32.0,
-                //   fontFamily:'IndieFlower',
-                //   color: Colors.red,
-                // )
               ),
             ),
           ),
@@ -111,5 +90,3 @@ class _ContactManagerState extends State<ContactManager> {
     );
   }
 }
-
-// fonts/TrajanPro.ttf

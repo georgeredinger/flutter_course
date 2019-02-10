@@ -49,6 +49,7 @@ class _ProfileState extends State<SettingsProfile> {
   Widget _fField(String label, String result) {
     return TextFormField(
         decoration: InputDecoration(labelText: label, icon: Icon(Icons.info)),
+        initialValue: _profile[result], //load this from DB and logged in user
         validator: (String value) {
           switch (result) {
             case 'userName':
@@ -64,58 +65,69 @@ class _ProfileState extends State<SettingsProfile> {
               break;
             case 'gender':
               if (value != 'Flex') {
-                return 'no posers allowed';
+                return 'no gender posers allowed';
               }
               break;
           }
         },
         onSaved: (String value) {
-          setState(() {
-            _profile[result] = value;
-          });
+          _profile[result] = value;
         });
+  }
+
+  Widget _face() {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Container(
+          width: 100.0,
+          height: 100.0,
+          alignment: Alignment(-1, 1),
+          child: CircleAvatar(
+            backgroundImage:
+                AssetImage(face()), //load face image from backend user info
+            radius: 50,
+          )),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Profile Settings'),
-        ),
-        body: Container(
-          margin: EdgeInsets.all(15.0),
-          child: Form(
-            key: _formKey,
-            child: ListView(children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Container(
-                    width: 100.0,
-                    height: 100.0,
-                    alignment: Alignment(-1, 1),
-                    child: CircleAvatar(
-                      backgroundImage: AssetImage(face()),
-                      radius: 60,
-                    )),
-              ),
-              _fField("user name", "userName"),
-              _fField("first name", "firstName"),
-              _fField("last name", "lastName"),
-              Container(
-                  padding: EdgeInsets.all(8.0),
-                  child: Divider(color: Colors.black, height: 13.0)),
-              _fField("location", "location"),
-              _fField("gender", "gender"),
-            ]),
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(
+            FocusNode()); //remove keyboard when taping out of TextFormFields
+      },
+      child: Scaffold(
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+          appBar: AppBar(
+            title: Text('Profile Settings'),
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-            elevation: 0.0,
-            child: Icon(Icons.add, size: 36.0),
-            materialTapTargetSize: MaterialTapTargetSize.padded,
-            backgroundColor: Colors.green,
-            onPressed: () {
-              _submitForm();
-            }));
+          body: Container(
+            margin: EdgeInsets.all(15.0),
+            child: Form(
+              key: _formKey,
+              child: ListView(children: <Widget>[
+                _face(),
+                _fField("user name", "userName"),
+                _fField("first name", "firstName"),
+                _fField("last name", "lastName"),
+                Container(
+                    padding: EdgeInsets.all(8.0),
+                    child: Divider(color: Colors.black, height: 13.0)),
+                _fField("location", "location"),
+                _fField("gender", "gender"),
+              ]),
+            ),
+          ),
+          floatingActionButton: FloatingActionButton(
+              tooltip: "do it!",
+              elevation: 0.0,
+              child: Icon(Icons.add, size: 36.0),
+              materialTapTargetSize: MaterialTapTargetSize.padded,
+              backgroundColor: Colors.green,
+              onPressed: () {
+                _submitForm();
+              })),
+    );
   }
 }

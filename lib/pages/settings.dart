@@ -30,7 +30,7 @@ class SettingsPage extends StatelessWidget {
               "Find out where they are before you ride"),
           setter(context, '/sensor', Icons.settings_remote, "Sensor",
               "Feel the motion"), //Sensor()
-          setter(context, '/settings', Icons.security, "Privacy",
+          setter(context, '/settings', Icons.visibility_off, "Privacy",
               "Not posted to Facebook, but we do keep it, for \"safety\""),
           setter(context, '/profile', Icons.portrait, "My Info",
               "Don't worry we won't tell"),
