@@ -48,9 +48,9 @@ void _onChangedFBreferenceName(String value) => (() {
     });
 
 class HomePage extends StatelessWidget {
-  List<Contact> contacts;
   
-  HomePage(this.contacts);
+  
+  HomePage();
 
   Widget _appBar() {
     return AppBar(

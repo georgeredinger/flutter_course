@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 import './contacts.dart';
-import './pages/home.dart';
+// import './pages/home.dart';
+import './models/contact.dart';
 
 List<String> _contactNames = [
   'Winston Smith',
@@ -10,8 +11,8 @@ List<String> _contactNames = [
   'O’Brien ',
   'Big Brother',
   'Mr. Charrington',
-  'Syme',
-  'Parsons',
+  'Syme Syme',
+  'Parsons Fab',
   'Emmanuel Goldstein',
   'Old Major',
   'Mr. Pilkington'
@@ -34,7 +35,7 @@ class ContactManager extends StatefulWidget {
 }
 
 class _ContactManagerState extends State<ContactManager> {
-  List<String> _contacts = [];
+  List<Contact> _contacts = [];
 
   @override
   void initState() {
@@ -46,47 +47,17 @@ class _ContactManagerState extends State<ContactManager> {
     super.didUpdateWidget(oldWidget);
   }
 
-  _deleteContact(String name) {
-    _contacts.removeAt(0);
-  }
-
   @override
   Widget build(BuildContext context) {
-    double opa = Random().nextDouble() % 1.0;
-    double rad = Random().nextDouble() * 30.0;
-    Color clr = Color((Random().nextDouble() * 0xFFFFFF).toInt() << 0);
+    _contacts.removeRange(0, _contacts.length);
+    for (var c in _contactNames) {
+      String first = c.split(" ")[0];
+      String last = c.split(" ")[1];
+      _contacts.add(Contact(firstName: first, lastName: last));
+    }
 
     return Column(
-      children: [
-        Container(
-          margin: EdgeInsets.all(10.0),
-          child: Container(
-            decoration: BoxDecoration(
-                border: Border.all(color: clr, width: 3.0),
-                borderRadius: BorderRadius.circular(rad),
-                boxShadow: [
-                  BoxShadow(
-                    color: clr,
-                    offset: Offset(10.0, 6.0),
-                    blurRadius: (Random().nextDouble() * 10),
-                  ),
-                ]),
-            child: RaisedButton(
-              color: clr.withOpacity(opa),
-              onPressed: () {
-                setState(() {
-                  _contacts.add(contactor());
-                });
-              },
-              child: Text(
-                'Spindle it',
-                style: funky(),
-              ),
-            ),
-          ),
-        ),
-        Expanded(child: Contacts(_contacts))
-      ],
+      children: [Expanded(child: Contacts(_contacts))],
     );
   }
 }

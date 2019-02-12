@@ -6,7 +6,6 @@ import './pages/login.dart';
 import './pages/settings.dart';
 import './pages/settingsprofile.dart';
 import './pages/settingssensor.dart';
-import './models/contact.dart';
 
 bool get isInDebugMode {
   bool inDebugMode = false;
@@ -41,30 +40,11 @@ void main() {
   userProfile['Gender'] = 'Gender';
 
   print("debug is " + isInDebugMode.toString());
+
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    return _MyAppState();
-  }
-}
-
-class _MyAppState extends State<MyApp> {
-  List<Contact> _contacts = [];
-
-  void _addContact(Contact contact) {
-    setState(() {
-      _contacts.add(contact);
-    });
-  }
-
-void _deleteContact(int index){
-  setState((){
-    _contacts.removeAt(index);
-  });
-}
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -76,7 +56,7 @@ void _deleteContact(int index){
           buttonColor: Colors.deepOrange,
           fontFamily: 'PT_Sans',
         ),
-        home: HomePage(_contacts),
+        home: HomePage(),
         routes: {
           // '/': (BuildContext context ) => HomePage(),
           '/emergencycontacts': (BuildContext context) => Sensor(),

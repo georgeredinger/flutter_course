@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 
 import 'dart:math';
-// import './pages/settings.dart';
+import 'models/contact.dart';
 
 String face() {
   var rid = new Random();
@@ -18,7 +18,7 @@ String face() {
 }
 
 class Contacts extends StatelessWidget {
-  final List<String> contacts;
+  final List<Contact> contacts;
 
   Contacts(this.contacts) {
     // print('[contact widget] Constructor');
@@ -33,15 +33,23 @@ class Contacts extends StatelessWidget {
     );
   }
 
-  Widget contactName(String element) {
+  Widget contactName(Contact element) {
     return Container(
       height: 20.0,
       margin: new EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-      child: Text(element,
-          style: TextStyle(
-            fontSize: 22.0,
-            color: Colors.black,
-          )),
+      child: Row(children: [
+        Text(element.firstName,
+            style: TextStyle(
+              fontSize: 22.0,
+              color: Colors.black,
+            )),
+        Text("\t"),
+        Text(element.lastName,
+            style: TextStyle(
+              fontSize: 22.0,
+              color: Colors.black,
+            )),
+      ]),
     );
   }
 
@@ -73,7 +81,7 @@ class Contacts extends StatelessWidget {
     );
   }
 
-  List<Widget> contactStuff(String element) {
+  List<Widget> contactStuff(Contact element) {
     return [
       contactImage(),
       Column(
@@ -102,16 +110,7 @@ class Contacts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var b = bob(context);
-    if (b.length == 0) {
-      return Center(
-          child: Text(
-        "Better Spindle some",
-        style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.bold),
-      ));
-    } else {
-      return
-         ListView(children: b);
-      
-    }
+
+    return ListView(children: b);
   }
 }
