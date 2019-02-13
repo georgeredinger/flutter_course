@@ -2,6 +2,8 @@ import "package:flutter/material.dart";
 
 import 'dart:math';
 import 'models/contact.dart';
+import 'package:scoped_model/scoped_model.dart';
+
 
 String face() {
   var rid = new Random();
@@ -53,7 +55,7 @@ class Contacts extends StatelessWidget {
     );
   }
 
-  Widget contactEmergency() {
+  Widget contactEmergency(String uid) {
     var rand = new Random();
 
     return IconButton(
@@ -63,20 +65,23 @@ class Contacts extends StatelessWidget {
           : Icon(Icons.add_circle_outline),
       tooltip: 'Make Emergency contact',
       onPressed: () {
-        print("Emergency");
+        print("Emergency "+uid);
       },
     );
   }
 
-  Widget contactLetFollow() {
+  Widget contactLetFollow(String uid) {
     var rand = new Random();
 
     return IconButton(
       color: (rand.nextBool()) ? Colors.red : Colors.grey,
       icon: Icon(Icons.contact_mail),
       tooltip: 'Make Socal contact',
+    //put uid into follower list
       onPressed: () {
-        print("happy");
+        print("happy "+uid);
+        //put uid into followed list
+
       },
     );
   }
@@ -90,7 +95,7 @@ class Contacts extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             contactName(element),
-            Row(children: [contactLetFollow(), contactEmergency()])
+            Row(children: [contactLetFollow(element.uid), contactEmergency(element.uid)])
           ])
     ];
   }
