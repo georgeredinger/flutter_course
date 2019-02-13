@@ -7,7 +7,7 @@ import './settings.dart';
 import './settingsprofile.dart';
 import '../main.dart';
 import '../models/contact.dart';
-
+import '../pages/login.dart';
 
 TextStyle funky() {
   var rid = new Random();
@@ -48,8 +48,6 @@ void _onChangedFBreferenceName(String value) => (() {
     });
 
 class HomePage extends StatelessWidget {
-  
-  
   HomePage();
 
   Widget _appBar() {
@@ -214,7 +212,9 @@ class HomePage extends StatelessWidget {
         length: 4,
         child: Scaffold(
           appBar: _appBar(),
-          body: ContactManager(),
+          // body: ContactManager(),
+          body: Login(),
+
           endDrawer: _rightDrawer(context),
           drawer: _leftDrawer(context),
           bottomNavigationBar: _bottomBar(context),
